@@ -1,13 +1,13 @@
 require('dotenv').config();
 const express=require('express');
-const cors=require('cors');
+// const cors=require('cors');
 const app=express();
 const Note=require('./models/note');
 const { response } = require('express');
 
 
 app.use(express.static('build'));
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 const errorHandler = (error, request, response, next) => {
@@ -75,7 +75,7 @@ app.post('/api/notes',(req,res,next)=>{
 
   })
   
-app.delete('/api/notes/:id',(req,res)=>{
+app.delete('/api/notes/:id',(req,res,next)=>{
    Note.findByIdAndRemove(req.params.id)
    .then(result =>{
       res.status(204).end();
