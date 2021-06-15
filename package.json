@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
     "build:ui": "del build && rmdir build && cd ../part1 && npm run build --prod",
-    "lint":"eslint ."
+    "lint": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "fix": "npm run lint -- --fix"
   },
   "author": "pradeep",
   "license": "MIT",
@@ -16,10 +17,17 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "mongoose": "^5.12.13"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.28.0",
-    "nodemon": "^2.0.7"
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7",
+    "supertest": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

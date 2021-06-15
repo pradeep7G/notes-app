@@ -10,7 +10,7 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-    "content":"This is note is going to be deleted",
+    "content":"third note for test",
     "important":true
 }
 
@@ -19,8 +19,8 @@ PUT http://localhost:3001/api/notes/60c7163d6e5712065446de4e
 Content-Type: application/json
 
 {
-    "content":"This is note is going to be deleted",
-    "important":false
+    "content":"Second note for test",
+    "important":true
 }
 
 ###
