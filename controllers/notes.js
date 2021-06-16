@@ -1,6 +1,6 @@
 const notesRouter=require('express').Router()
 const Note=require('../models/note')
-
+require('express-async-errors')
 notesRouter.get('/',async (req,res) => {
   const notes=await Note.find({})
   res.json(notes)
@@ -8,6 +8,7 @@ notesRouter.get('/',async (req,res) => {
 
 notesRouter.get('/:id',async (req,res,next) => {
 
+  try{
   const note =await Note.findById(req.params.id)
   if(note)
   {
@@ -16,7 +17,9 @@ notesRouter.get('/:id',async (req,res,next) => {
   else{
     res.status(404).end()
   }
-
+}catch(exception){
+  next(exception)
+}
 })
 
 notesRouter.post('/',async (req,res,next) => {
